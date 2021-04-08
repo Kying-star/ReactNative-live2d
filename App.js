@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-30 14:39:06
- * @LastEditTime: 2021-04-06 21:22:30
+ * @LastEditTime: 2021-04-07 15:09:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /demo2/App.js
@@ -23,55 +23,59 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state={
-      title:'loading',
+      title:'',
       inputTitle:''
     };
-    var self = this;
-    fetch('http://www.tuling123.com/openapi/api', {
-      method: 'post',
-      body: JSON.stringify({
-        key: "d0542def0cb94cc48e4bdd836b25281c",
-        info: "几点了呀"
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(e =>{
-      // Alert.alert(e.text)
-      self.setState({
-        title:e.text,
-      })
-    })
+    
   }
+  getAnswer(){
+      let self = this;
+      fetch('http://www.tuling123.com/openapi/api', {
+        method: 'post',
+        body: JSON.stringify({
+          key: "d0542def0cb94cc48e4bdd836b25281c",
+          info: this.state.inputTitle
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(e =>{
+        // Alert.alert(e.text)
+        self.setState({
+          title:e.text,
+        })
+      })
+    }
   render() {
     return (
       <SafeAreaView>
-        {/* <View style={styles.container}>
-
-        </View> */}
         <View style={{
           height:"100%",
           width:"100%",
         }}>
-          <ImageBackground source={image} style={styles.image}>  
+          <ImageBackground source={require("./assets/images/bk.jpg")} style={styles.image}>  
             <View style={styles.bubble}>
-              <Text>{this.state.title}</Text>
+              <Text style={{
+                color:"#ed556a",
+                fontSize:20
+                }} >{this.state.title}
+              </Text>
             </View>       
             <View style={{
+              position:"relative",
+              top:"-1%",
               height: "60%",
               width: "100%",
               overflow:'hidden',
-              marginTop:"30%"
             }}>
             <WebView style={{
-              backgroundColor:"transparent"
+              backgroundColor:"transparent",
+              // backgroundColor:"red"
             }} source={{ uri: 'https://kyingstar.com/' }} />
-          </View>
-                    <View>
-
-            <Text>{this.state.inputTitle}</Text>
+            </View>
+            <View>
             <View style={styles.flexRow}>
               <TextInput
                 style={styles.input}
@@ -80,10 +84,10 @@ export default class App extends Component {
                     inputTitle:text
                   })
               }}
-            />
+              />
               <Button
                 onPress={() => {
-                  Alert.alert('你点击了按钮！');
+                  this.getAnswer()
                 }}
                 title="发送"
               />
@@ -98,15 +102,16 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   bubble: {
     position:"relative",
-    bottom:-190,
-    margin:40,
-    height:50,
+    bottom:"-14%",
+    height:"10%",
+    margin:20,
     backgroundColor: "rgba(255,255,255,0.7)",
-    borderRadius:3
+    borderRadius:3,
+    padding:5
   },
   flexRow: {
     position:"relative",
-    top: -100,
+    top:"-10%",
     margin: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
