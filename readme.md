@@ -1,6 +1,20 @@
 # 基于ReactNative+live2d实现可爱的聊天机器人
 
+## 运行
 
+安装依赖
+
+```js
+npm install
+or
+yarn
+```
+
+运行
+
+```js
+yarn ios
+```
 
 ## 技术栈
 
@@ -278,4 +292,8 @@ http://www.turingapi.com/
 - [x] 列车查询
 - [x] 日期查询
 - [x] 城市邮编
+
+## github
+
+https://github.com/Kying-star/ReactNative-live2d
 
