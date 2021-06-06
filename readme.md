@@ -10,6 +10,10 @@ or
 yarn
 ```
 
+```npm
+cd ios && pod install
+```
+
 运行
 
 ```js
