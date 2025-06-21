@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2021-01-30 14:39:06
- * @LastEditTime: 2021-04-07 15:09:14
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /demo2/App.js
- */
 import React, { Component } from 'react';
 import {
    View,
@@ -51,29 +43,14 @@ export default class App extends Component {
   render() {
     return (
       <SafeAreaView>
-        <View style={{
-          height:"100%",
-          width:"100%",
-        }}>
+        <View style={styles.mainView}>
           <ImageBackground source={require("./assets/images/bk.jpg")} style={styles.image}>  
             <View style={styles.bubble}>
-              <Text style={{
-                color:"#ed556a",
-                fontSize:20
-                }} >{this.state.title}
+              <Text style={styles.titleText} >{this.state.title}
               </Text>
             </View>       
-            <View style={{
-              position:"relative",
-              top:"-1%",
-              height: "60%",
-              width: "100%",
-              overflow:'hidden',
-            }}>
-            <WebView style={{
-              backgroundColor:"transparent",
-              // backgroundColor:"red"
-            }} source={{ uri: 'https://kyingstar.com/' }} />
+            <View style={styles.webViewContainer}>
+            <WebView style={styles.webView} source={{ uri: 'https://kyingstar.com/' }} />
             </View>
             <View>
             <View style={styles.flexRow}>
@@ -100,14 +77,42 @@ export default class App extends Component {
   }
 } 
 const styles = StyleSheet.create({
+  mainView: {
+    height:"100%",
+    width:"100%",
+  },
+  titleText: {
+    color:"#ed556a",
+    fontSize:20
+  },
+  webViewContainer: {
+    position:"relative",
+    top:"-1%",
+    height: "60%",
+    width: "100%",
+    overflow:'hidden',
+  },
+  webView: {
+    backgroundColor:"transparent",
+  },
   bubble: {
     position:"relative",
     bottom:"-14%",
     height:"10%",
     margin:20,
-    backgroundColor: "rgba(255,255,255,0.7)",
+    backgroundColor: "rgba(255,255,255,0.85)",
     borderRadius:3,
-    padding:5
+    padding:5,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+    elevation: 2
   },
   flexRow: {
     position:"relative",
@@ -116,7 +121,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: "rgba(255,255,255,0.7)",
-    borderRadius:3
+    borderRadius:3,
+    padding: 10,
+    alignItems: 'center'
   },
   image: {
     flex: 1,
@@ -129,10 +136,11 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 300,
-    marginLeft:20,
-    borderColor: 'gray', 
+    flex: 1,
+    marginRight: 10,
+    borderColor: '#cccccc',
     borderWidth: 1,
-    borderWidth:0
+    paddingHorizontal: 10,
+    borderRadius: 3
   }
 })
